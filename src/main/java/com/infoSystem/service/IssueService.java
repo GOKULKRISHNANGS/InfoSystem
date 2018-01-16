@@ -26,6 +26,7 @@ public class IssueService {
 			issueModel.setIssueId(issueEntity.getIssueId());
 			issueModel.setIssueText(issueEntity.getIssueTxt());
 			issueModel.setCreatedTimeStamp(issueEntity.getCreatedTimestamp());
+			issueModel.setPostedBy(issueDao.getName(issueEntity.getCreatedBy()));
 			issueList.add(issueModel);
 		}
 		return issueList;

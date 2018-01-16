@@ -7,10 +7,20 @@ public class IssueModel {
 	private int issueId;
 
 	private String issueText;
-	
+
 	private int createdBy;
 
 	private Date createdTimeStamp;
+
+	private String postedBy;
+
+	public String getPostedBy() {
+		return postedBy;
+	}
+
+	public void setPostedBy(String postedBy) {
+		this.postedBy = postedBy;
+	}
 
 	public int getIssueId() {
 		return issueId;

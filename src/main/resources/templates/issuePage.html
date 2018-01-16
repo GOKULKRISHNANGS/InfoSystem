@@ -33,7 +33,7 @@
 		<div th:each="issue : ${issues}">
 			<div>
 				<div>
-					<span th:text="${issue.createdBy}"></span>
+					<span><strong th:text="${issue.postedBy}"></strong></span>
 				</div>
 				<div>
 					<span th:text="${issue.issueText}"></span>
