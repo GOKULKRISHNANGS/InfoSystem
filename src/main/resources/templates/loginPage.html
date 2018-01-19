@@ -14,7 +14,8 @@
 
 	<div class="container well" style="width: 300px; margin-top: 150px;">
 		<h4 style="text-align:center;margin-bottom:30px;">Login</h4>
-		<form action="#" th:action="@{/validate_user}"
+		<p th:if="${loginError}" style="color:red;" class="error">Wrong username or password</p>
+		<form action="#" th:action="@{/get_notifications}"
 			th:object="${credentials}" method="post">
 			<div>
 				<input class="form-control" type="text"

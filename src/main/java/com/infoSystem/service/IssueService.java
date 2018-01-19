@@ -16,6 +16,12 @@ public class IssueService {
 
 	@Autowired
 	IssueDao issueDao;
+	
+	@Autowired
+	LikeService likeService;
+	
+	@Autowired
+	CommentService commentService;
 
 	public List<IssueModel> getAllIssues() {
 		List<IssueModel> issueList = new ArrayList<IssueModel>();
@@ -27,6 +33,8 @@ public class IssueService {
 			issueModel.setIssueText(issueEntity.getIssueTxt());
 			issueModel.setCreatedTimeStamp(issueEntity.getCreatedTimestamp());
 			issueModel.setPostedBy(issueDao.getName(issueEntity.getCreatedBy()));
+			issueModel.setTotalVotes(likeService.getTotalVotes(issueEntity.getIssueId()));
+			issueModel.setComments(commentService.getComments(issueEntity.getIssueId()));
 			issueList.add(issueModel);
 		}
 		return issueList;

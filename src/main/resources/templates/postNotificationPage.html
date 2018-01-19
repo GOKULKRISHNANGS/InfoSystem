@@ -22,9 +22,12 @@
 			</ul>
 		</div>
 	</nav>
+
 	<!-- <h1 th:text="${userId}"></h1> -->
-	<div class="container" style="margin-top:70px;">
+	<div class="container" style="margin-top: 70px;">
 		<h3>Enter your notification here</h3>
+		<div th:if="${postSuccess}" class="alert alert-success" role="alert">
+			Your notification was successfully posted.</div>
 	</div>
 	<div class="container">
 		<div class="well">

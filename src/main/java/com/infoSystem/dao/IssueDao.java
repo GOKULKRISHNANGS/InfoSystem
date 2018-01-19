@@ -28,19 +28,29 @@ public class IssueDao {
 		CriteriaQuery<IssueEntity> criteriaQuery = builder.createQuery(IssueEntity.class);
 		Root<IssueEntity> root = criteriaQuery.from(IssueEntity.class);
 		criteriaQuery.select(root);
-		issueList = entityManager.createQuery(criteriaQuery).getResultList();
+		try{
+			issueList = entityManager.createQuery(criteriaQuery).getResultList();
+		} catch(Exception e){
+			
+		}
 		return issueList;
 	}
 	
 	public String getName(int userId) {
 		UserEntity userEntity = new UserEntity();
+		String userName = "";
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<UserEntity> criteriaQuery = builder.createQuery(UserEntity.class);
 		Root<UserEntity> root = criteriaQuery.from(UserEntity.class);
 		criteriaQuery.select(root);
 		criteriaQuery.where(builder.equal(root.get("userId"), userId));
-		userEntity = entityManager.createQuery(criteriaQuery).getSingleResult();
-		String userName = userEntity.getUserFirstName()+"_"+userEntity.getUserLastName();
+		try{
+			userEntity = entityManager.createQuery(criteriaQuery).getSingleResult();
+			userName = userEntity.getUserFirstName()+"_"+userEntity.getUserLastName();	
+		}catch(Exception e){
+			
+		}
+		
 		return userName;
 	}
 

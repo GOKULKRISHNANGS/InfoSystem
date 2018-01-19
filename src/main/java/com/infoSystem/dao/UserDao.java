@@ -1,7 +1,5 @@
 package com.infoSystem.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -24,15 +22,14 @@ public class UserDao {
 		entityManager.persist(user);
 	}
 
-	public void getUser() {
+	public UserEntity getUser(String registrationNumber) {
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<UserEntity> criteriaQuery = builder.createQuery(UserEntity.class);
 		Root<UserEntity> root = criteriaQuery.from(UserEntity.class);
 		criteriaQuery.select(root);
-		criteriaQuery.where(builder.equal(root.get("userFirstName"), "Gokul"),
-				builder.equal(root.get("userLastName"), "kris"));
-		List<UserEntity> dataArray = entityManager.createQuery(criteriaQuery).getResultList();
-		System.out.println(dataArray.get(0).getUserFirstName());
+		criteriaQuery.where(builder.equal(root.get("userRegistrationNumber"), registrationNumber));
+		UserEntity userEntity = entityManager.createQuery(criteriaQuery).getSingleResult();
+		return userEntity;
 	}
 
 }

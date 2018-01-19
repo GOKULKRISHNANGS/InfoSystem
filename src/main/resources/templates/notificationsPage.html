@@ -30,7 +30,7 @@
 		</div>
 	</nav>
 	<div class="container" style="margin-bottom: 20px;margin-top: 70px;">
-		<a class="btn btn-success" th:href="@{/new_notification}">New
+		<a th:if="${isDirector}" class="btn btn-success" th:href="@{/new_notification}">New
 			Notification</a>
 	</div>
 	<div class="container">

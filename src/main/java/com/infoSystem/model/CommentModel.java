@@ -14,6 +14,16 @@ public class CommentModel {
 
 	private Date createdTimeStamp;
 
+	private String commentedBy;
+
+	public String getCommentedBy() {
+		return commentedBy;
+	}
+
+	public void setCommentedBy(String commentedBy) {
+		this.commentedBy = commentedBy;
+	}
+
 	public int getCommentId() {
 		return commentId;
 	}

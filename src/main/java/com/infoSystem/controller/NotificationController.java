@@ -28,6 +28,12 @@ public class NotificationController {
 		mav.setViewName("notificationsPage");
 		return mav;
 	}
+	
+//	@GetMapping("notifications_page/{registrationNumber}")
+//	public ModelAndView redirect(){
+//		
+//	}
+//	
 
 	@GetMapping("new_notification")
 	public ModelAndView createNotification() {
@@ -42,9 +48,16 @@ public class NotificationController {
 			@SessionAttribute("userId") String userId) {
 		ModelAndView mav = new ModelAndView();
 		notificationModel.setCreatedBy(Integer.parseInt(userId));
-		notificationService.createNotification(notificationModel);
-		mav.addObject("notifications", notificationService.getAllNotifications());
-		mav.setViewName("notificationsPage");
+		int response = notificationService.createNotification(notificationModel);
+		if (response > 0) {
+			System.out.println("Notification created");
+			mav.addObject("postSuccess", true);
+			mav.addObject("notifications", new NotificationModel());
+			mav.setViewName("postNotificationPage");
+		} else {
+			mav.addObject("notifications", new NotificationModel());
+			mav.setViewName("postNotificationPage");
+		}
 		return mav;
 	}
 

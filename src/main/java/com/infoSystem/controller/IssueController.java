@@ -41,9 +41,15 @@ public class IssueController {
 	public ModelAndView postIssue(@ModelAttribute IssueModel issueModel, @SessionAttribute("userId") String userId) {
 		ModelAndView mav = new ModelAndView();
 		issueModel.setCreatedBy(Integer.parseInt(userId));
-		issueService.postIssue(issueModel);
-		mav.addObject("issues", new IssueModel());
-		mav.setViewName("postIssue");
+		int response = issueService.postIssue(issueModel);
+		if (response > 0) {
+			mav.addObject("postSuccess", true);
+			mav.addObject("issues", new IssueModel());
+			mav.setViewName("postIssue");
+		} else {
+			mav.addObject("issues", new IssueModel());
+			mav.setViewName("postIssue");
+		}
 		return mav;
 	}
 

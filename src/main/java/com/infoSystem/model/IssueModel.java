@@ -1,6 +1,7 @@
 package com.infoSystem.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class IssueModel {
 
@@ -13,6 +14,26 @@ public class IssueModel {
 	private Date createdTimeStamp;
 
 	private String postedBy;
+
+	private int totalVotes;
+
+	public List<CommentModel> comments;
+
+	public List<CommentModel> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentModel> comments) {
+		this.comments = comments;
+	}
+
+	public int getTotalVotes() {
+		return totalVotes;
+	}
+
+	public void setTotalVotes(int totalVotes) {
+		this.totalVotes = totalVotes;
+	}
 
 	public String getPostedBy() {
 		return postedBy;
