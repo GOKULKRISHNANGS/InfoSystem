@@ -54,3 +54,7 @@ function comment(issueID) {
 		alert("Comments should be greater than 5 letters");
 	}
 }
+
+function change() {
+	alert("It works");
+}

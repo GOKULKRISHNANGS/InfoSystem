@@ -1,20 +1,30 @@
 package com.infoSystem.model;
 
 public class UserModel {
-	
+
 	private int userId;
-	
+
 	private String registrationNumber;
-	
+
 	private String firstName;
-	
+
 	private String lastName;
-	
+
 	private String role;
-	
+
 	private String branchName;
-	
+
 	private String emailId;
+
+	private Boolean isLimited;
+
+	public Boolean getIsLimited() {
+		return isLimited;
+	}
+
+	public void setIsLimited(Boolean isLimited) {
+		this.isLimited = isLimited;
+	}
 
 	public int getUserId() {
 		return userId;
@@ -71,5 +81,5 @@ public class UserModel {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	
+
 }
