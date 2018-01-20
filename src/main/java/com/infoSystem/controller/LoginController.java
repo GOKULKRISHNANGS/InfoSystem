@@ -18,7 +18,7 @@ import com.infoSystem.service.NotificationService;
 import com.infoSystem.service.UserService;
 
 @Controller
-@SessionAttributes("userId")
+@SessionAttributes({"userId", "registrationNumber"})
 @RequestMapping("/")
 public class LoginController {
 
@@ -49,6 +49,7 @@ public class LoginController {
 				mav.addObject("isDirector", true);
 			}
 			mav.addObject("userId", response);
+			mav.addObject("registrationNumber", loginModel.getUserRegistrationNumber());
 			mav.addObject("notifications", notificationService.getAllNotifications());
 			mav.setViewName("notificationsPage");
 			return mav;

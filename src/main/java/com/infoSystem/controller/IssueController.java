@@ -15,7 +15,7 @@ import com.infoSystem.service.IssueService;
 import com.infoSystem.service.LimitService;
 
 @Controller
-@SessionAttributes("userId")
+@SessionAttributes({"userId", "registrationNumber"})
 @RequestMapping("/")
 public class IssueController {
 
@@ -29,7 +29,6 @@ public class IssueController {
 	public ModelAndView viewIssues(@SessionAttribute("userId") String userId) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("isLimited", limitService.getLimit(userId));
-		System.out.println(limitService.getLimit(userId));
 		mav.addObject("issues", issueService.getAllIssues());
 		mav.setViewName("issuePage");
 		return mav;

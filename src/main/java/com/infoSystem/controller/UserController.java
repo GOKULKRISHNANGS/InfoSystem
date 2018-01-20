@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.infoSystem.service.UserService;
 
 @Controller
-@SessionAttributes("userId")
+@SessionAttributes({"userId", "registrationNumber"})
 @RequestMapping("user")
 public class UserController {
 

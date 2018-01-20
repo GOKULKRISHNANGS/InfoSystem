@@ -15,7 +15,7 @@ import com.infoSystem.service.LimitService;
 import com.infoSystem.service.UserService;
 
 @Controller
-@SessionAttributes("userId")
+@SessionAttributes({"userId", "registrationNumber"})
 @RequestMapping("/")
 public class LimitController {
 

@@ -33,7 +33,6 @@ public class LikeDao {
 				builder.equal(root.get("createdBy"), likeEntity.getCreatedBy()));
 		try {
 			likeList = entityManager.createQuery(criteriaQuery).getSingleResult();
-			System.out.println(likeList.getIssueId());
 			if (likeList.getCreatedBy() == likeEntity.getCreatedBy()) {
 				entityManager.remove(likeEntity);
 			} else {
