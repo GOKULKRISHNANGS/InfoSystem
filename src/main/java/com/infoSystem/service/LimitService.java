@@ -31,8 +31,12 @@ public class LimitService {
 	}
 
 	public Boolean getLimit(int userId) {
-		Boolean response = limitDao.checkLimitations(userId);
-		return response;
+		int response = limitDao.noOfIssues(userId);
+		if (response >= 2 && limitDao.checkLimitations(userId)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public Boolean checkIssues(String userId) {

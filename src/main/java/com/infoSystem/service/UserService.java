@@ -40,6 +40,7 @@ public class UserService {
 			userModel.setRegistrationNumber(userEntity.getUserRegistrationNumber());
 			userModel.setUserId(userEntity.getUserId());
 			userModel.setEmailId(userEntity.getEmail());
+			System.out.println(userEntity.getUserId());
 			userModel.setIsLimited(limitService.getLimit(userEntity.getUserId()));
 			userModelList.add(userModel);
 		}

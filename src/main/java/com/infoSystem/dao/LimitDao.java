@@ -2,6 +2,7 @@ package com.infoSystem.dao;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,6 +16,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.infoSystem.entity.IssueEntity;
 import com.infoSystem.entity.LimitEntity;
 import com.infoSystem.entity.UserEntity;
 
@@ -60,13 +62,21 @@ public class LimitDao {
 
 	public int noOfIssues(int userId) {
 		String sql = "SELECT * FROM DBO.TBLISSUE WHERE CREATED_BY = ? AND CREATED_TIMESTAMP >= ?";
-		Query query = entityManager.createNativeQuery(sql, UserEntity.class);
+		Query query = entityManager.createNativeQuery(sql, IssueEntity.class);
 		query.setParameter(1, userId);
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String strDate = sdf.format(date);
 		query.setParameter(2, strDate);
-		int count = (int) query.getMaxResults();
+		int count = 0;
+		try {
+			List<Object> list = (List<Object>) query.getResultList();
+			if (list.size() > 0) {
+				count = list.size();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return count;
 	}
 
@@ -77,14 +87,16 @@ public class LimitDao {
 		String sql = "SELECT * FROM DBO.TBLLIMIT WHERE USER_ID = " + userId + " AND CREATED_TIMESTAMP >=" + "'"
 				+ strDate + "'";
 		Query query = entityManager.createNativeQuery(sql);
-		System.out.println(strDate);
-		List<LimitEntity> list = (List<LimitEntity>) query.getResultList();
-		System.out.println(list.size());
-		if (true) {
-			return false;
-		} else {
-			return true;
+		try {
+			List<Object> list = (List<Object>) query.getResultList();
+			if (list.size() > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+		return false;
 	}
 
 }

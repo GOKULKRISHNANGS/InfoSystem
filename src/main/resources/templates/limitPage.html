@@ -25,7 +25,8 @@
 			<ul class="nav navbar-nav">
 				<li><a th:href="@{/get_notifications}">Notifications</a></li>
 				<li><a th:href="@{/get_issues}">Issues</a></li>
-				<li class="active"><a th:href="@{/limit_issues}">Limit Issues</a></li>
+				<li class="active"><a th:href="@{/limit_issues}">Limit
+						Issues</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a th:href="@{/login}">Logout</a></li>
@@ -47,8 +48,10 @@
 					<td th:text="${student.lastName}">lastName</td>
 					<td th:text="${student.branchName}">Department</td>
 					<td th:text="${student.emailId}">Email</td>
-					<td><label class="switch" style="margin-top:10px;"> <input type="checkbox"
-							th:onchange="'javascript:change(\'' + ${student.userId} + '\');'" th:attr="checked=${student.isLimited}" /> <span
+					<td><label class="switch" style="margin-top: 10px;"> <input
+							type="checkbox"
+							th:onchange="'javascript:change(\'' + ${student.userId} + '\');'"
+							th:attr="disabled=${student.isLimited}, checked=${student.isLimited}"/> <span
 							class="slider round"></span>
 					</label></td>
 				</tr>
