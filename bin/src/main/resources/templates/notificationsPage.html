@@ -1,0 +1,60 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Information System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{../css/style.css}" />
+</head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">Information System</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a th:href="@{/get_notifications}">Notifications</a></li>
+				<li><a th:href="@{/get_issues}">Issues</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a th:href="@{/login}">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container" style="margin-bottom: 20px;margin-top: 70px;">
+		<a th:if="${isDirector}" class="btn btn-success" th:href="@{/new_notification}">New
+			Notification</a>
+	</div>
+	<div class="container">
+		<h3>Notifications:</h3>
+		<div th:each="notification : ${notifications}">
+			<div style="margin-top: 10px;">
+				<a th:attr="data-target='#'+${notification.notificationId}"
+					data-toggle="collapse" style="cursor: pointer;"> <span
+					th:text="${notification.notificationSummary}"></span>
+				</a>
+			</div>
+			<div class="collapse" th:attr="id=${notification.notificationId}">
+				<div class="well well-sm" style="margin-top: 10px;">
+					<div>
+						<span th:text="${notification.notificationText}"></span>
+					</div>
+					<div style="margin-top: 10px;">
+						<span><b>Posted on:</b></span> <span
+							th:text="${notification.createdTimestamp}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

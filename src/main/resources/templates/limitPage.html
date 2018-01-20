@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Information System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{../css/style.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{../css/slider.css}" />
+</head>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">Information System</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a th:href="@{/get_notifications}">Notifications</a></li>
+				<li><a th:href="@{/get_issues}">Issues</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a th:href="@{/login}">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<h3>Notifications:</h3>
+		<div th:each="student : ${students}">
+			<div>
+				<span th:text="${student.firstName}"></span>
+			</div>
+		</div>
+	</div>
+	<label class="switch"> <input type="checkbox" th:onchange="'javascript:change();'" th:attr = "checked=true"/>
+		<span class="slider round"></span>
+	</label>
+</body>
+
+</html>

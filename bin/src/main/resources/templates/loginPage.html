@@ -1,0 +1,35 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Information System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{../css/style.css}" />
+</head>
+
+<body>
+
+	<div class="container well" style="width: 300px; margin-top: 150px;">
+		<h4 style="text-align:center;margin-bottom:30px;">Login</h4>
+		<p th:if="${loginError}" style="color:red;" class="error">Wrong username or password</p>
+		<form action="#" th:action="@{/get_notifications}"
+			th:object="${credentials}" method="post">
+			<div>
+				<input class="form-control" type="text"
+					th:field="*{userRegistrationNumber}" placeholder="username" />
+			</div>
+			<div style="margin-top: 20px;">
+				<input class="form-control" type="password"
+					th:field="*{userPassword}" placeholder="password" />
+			</div>
+			<button style="margin-top: 20px;" type="submit"
+				class="btn btn-success form-control">Login</button>
+		</form>
+	</div>
+
+</body>
+
+</html>

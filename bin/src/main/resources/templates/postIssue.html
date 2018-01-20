@@ -1,0 +1,52 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Information System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{../css/style.css}" />
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">Information System</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a th:href="@{/get_notifications}">Notifications</a></li>
+				<li class="active"><a th:href="@{/get_issues}">Issues</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container" style="margin-top: 70px;">
+		<h3>Enter your issue here</h3>
+		<div th:if="${postSuccess}" class="alert alert-success" role="alert">
+			Your issue was successfully posted.</div>
+	</div>
+	<div class="container">
+		<div class="well">
+			<form action="#" th:action="@{/post_issue}" th:object="${issues}"
+				method="post">
+				<div>
+					<textarea class="form-control" rows="5" th:field="*{issueText}"
+						placeholder="Type here"></textarea>
+				</div>
+				<div style="margin-top: 20px;">
+					<button type="submit" class="btn btn-primary">Post Issue</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="container" style="margin-top: 50px;">
+		<a class="btn btn-default" th:href="@{/get_issues}">Back To Issues
+			Page</a>
+	</div>
+
+</body>
+
+</html>
