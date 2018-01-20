@@ -55,6 +55,25 @@ function comment(issueID) {
 	}
 }
 
-function change() {
-	alert("It works");
+function change(studentId) {
+
+	var postUrl = "limit/" + studentId;
+
+	$.ajax({
+		type : "POST",
+		contentType : "application/json",
+		url : postUrl,
+		data : JSON.stringify(studentId),
+		dataType : 'json',
+		cache : false,
+		timeout : 600000,
+		success : function(data) {
+			setTimeout(function() {
+				window.location.reload();
+			});
+		},
+		error : function(e) {
+
+		}
+	});
 }

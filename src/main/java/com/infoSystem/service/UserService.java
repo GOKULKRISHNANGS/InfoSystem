@@ -16,6 +16,9 @@ public class UserService {
 	@Autowired
 	UserDao userDao;
 
+	@Autowired
+	LimitService limitService;
+
 	public UserModel getUser(String registrationNumber) {
 		UserModel userModel = new UserModel();
 		UserEntity userEntity = userDao.getUser(registrationNumber);
@@ -37,6 +40,7 @@ public class UserService {
 			userModel.setRegistrationNumber(userEntity.getUserRegistrationNumber());
 			userModel.setUserId(userEntity.getUserId());
 			userModel.setEmailId(userEntity.getEmail());
+			userModel.setIsLimited(limitService.getLimit(userEntity.getUserId()));
 			userModelList.add(userModel);
 		}
 		return userModelList;

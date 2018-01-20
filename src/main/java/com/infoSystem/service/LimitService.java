@@ -1,7 +1,5 @@
 package com.infoSystem.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -32,24 +30,18 @@ public class LimitService {
 		return response;
 	}
 
-	public Boolean getLimit(String userId) {
-		String response = limitDao.checkUser(userId);
-		if (!response.equals("NOTFOUND")) {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			String date = sdf.format(new Date());
-			try {
-				Date newDate = sdf.parse(response);
-				String parsedDate = sdf.format(newDate);
-				if (parsedDate.equals(date)) {
-					return true;
-				} else {
-					return false;
-				}
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+	public Boolean getLimit(int userId) {
+		Boolean response = limitDao.checkLimitations(userId);
+		return response;
+	}
+
+	public Boolean checkIssues(String userId) {
+		int count = limitDao.noOfIssues(Integer.parseInt(userId));
+		if (count >= 2) {
+			return false;
+		} else {
+			return true;
 		}
-		return false;
 	}
 
 	public List<UserEntity> getStudentsList() {
