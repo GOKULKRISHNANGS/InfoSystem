@@ -1,5 +1,8 @@
 package com.infoSystem.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,22 @@ public class UserService {
 		userModel.setFirstName(userEntity.getUserFirstName());
 		userModel.setLastName(userEntity.getUserLastName());
 		return userModel;
+	}
+
+	public List<UserModel> getStudents() {
+		List<UserEntity> userEntityList = userDao.getStudents();
+		List<UserModel> userModelList = new ArrayList<UserModel>();
+		for (UserEntity userEntity : userEntityList) {
+			UserModel userModel = new UserModel();
+			userModel.setBranchName(userEntity.getBranchName());
+			userModel.setFirstName(userEntity.getUserFirstName());
+			userModel.setLastName(userEntity.getUserLastName());
+			userModel.setRegistrationNumber(userEntity.getUserRegistrationNumber());
+			userModel.setUserId(userEntity.getUserId());
+			userModel.setEmailId(userEntity.getEmail());
+			userModelList.add(userModel);
+		}
+		return userModelList;
 	}
 
 }

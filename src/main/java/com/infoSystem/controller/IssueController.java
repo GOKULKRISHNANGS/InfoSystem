@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.infoSystem.model.IssueModel;
 import com.infoSystem.service.IssueService;
+import com.infoSystem.service.LimitService;
 
 @Controller
 @SessionAttributes("userId")
@@ -21,9 +22,14 @@ public class IssueController {
 	@Autowired
 	IssueService issueService;
 
+	@Autowired
+	LimitService limitService;
+
 	@GetMapping("get_issues")
-	public ModelAndView viewIssues() {
+	public ModelAndView viewIssues(@SessionAttribute("userId") String userId) {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("isLimited", limitService.getLimit(userId));
+		System.out.println(limitService.getLimit(userId));
 		mav.addObject("issues", issueService.getAllIssues());
 		mav.setViewName("issuePage");
 		return mav;
