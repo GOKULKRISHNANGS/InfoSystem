@@ -15,23 +15,31 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand">Information System</a>
+	<div>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand">Information System</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a th:href="@{/get_notifications}">Notifications</a></li>
+					<li><a th:href="@{/get_issues}">Issues</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a th:href="@{/login}">Logout</a></li>
+				</ul>
 			</div>
-			<ul class="nav navbar-nav">
-				<li class="active"><a th:href="@{/get_notifications}">Notifications</a></li>
-				<li><a th:href="@{/get_issues}">Issues</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a th:href="@{/login}">Logout</a></li>
-			</ul>
-		</div>
-	</nav>
-	<div class="container" style="margin-bottom: 20px;margin-top: 70px;">
-		<a th:if="${isDirector}" class="btn btn-success" th:href="@{/new_notification}">New
-			Notification</a>
+		</nav>
+	</div>
+	<div class="col-lg-12">
+		<img style="max-height: 300px; width: 100%;" class="img-responsive"
+			th:src="@{../images/bg-page.jpg}" alt="Girl in a class" />
+		<h1 class="carousel-caption"
+			style="left: 100px; text-align: left; font-size: 48px">NOTIFICATIONS</h1>
+	</div>
+	<div class="container" style="margin-bottom: 20px;">
+		<a  style="margin-top:10px;" th:if="${isDirector}" class="btn btn-success"
+			th:href="@{/new_notification}">New Notification</a>
 	</div>
 	<div class="container">
 		<h3>Notifications:</h3>

@@ -48,7 +48,7 @@ CREATE TABLE dbo.tbllimit(
 
        limit_id int auto_increment primary key,
 
-       user_id int NOT NULL unique,
+       user_id int NOT NULL,
 
        created_by int not null,
 
@@ -145,6 +145,10 @@ CREATE TABLE dbo.tblogin(
 insert into dbo.tbluser(user_registration_number,user_first_name,user_last_name,role_txt,branch_name,email)
 
                                   values ('18CSE150','studfirst','studlast','student','CSE','abc@gmail.com');
+                                  
+insert into dbo.tbluser(user_registration_number,user_first_name,user_last_name,role_txt,branch_name,email)
+
+                                  values ('18CSE151','john','marks','student','CSE','john@gmail.com');                                  
 
  
 
@@ -159,6 +163,10 @@ insert into dbo.tbluser(user_registration_number,user_first_name,user_last_name,
 insert into dbo.tblogin(user_registration_number,user_password)
 
                                   values ('18CSE150','stud1234');
+                                  
+insert into dbo.tblogin(user_registration_number,user_password)
+
+                                  values ('18CSE151','stud1234');                                  
 
  
 

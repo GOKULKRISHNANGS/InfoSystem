@@ -55,6 +55,7 @@ public class LimitDao {
 		try {
 			entityManager.persist(limitEntity);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return 0;
 		}
 		return 1;
